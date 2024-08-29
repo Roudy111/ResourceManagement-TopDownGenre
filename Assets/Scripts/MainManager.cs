@@ -6,7 +6,7 @@ using System.IO;
 public class MainManager : MonoBehaviour
 {
     
-    public static MainManager instance;
+    public static MainManager instance {get; private set;}
     public Color TeamColor;
 
     private void Awake()
