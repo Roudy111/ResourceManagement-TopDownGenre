@@ -23,6 +23,7 @@ public abstract class Unit : MonoBehaviour,
         m_Agent.speed = Speed;
         m_Agent.acceleration = 999;
         m_Agent.angularSpeed = 999;
+       
     }
 
     private void Start()
@@ -33,27 +34,16 @@ public abstract class Unit : MonoBehaviour,
         }
 
     }
-
-    
+    private void Update()
+    {
+        UnitStartWorking();
+    }
     void SetColor(Color c)
     {
         var colorHandler = GetComponentInChildren<ColorHandler>();
         if (colorHandler != null)
         {
             colorHandler.SetColor(c);
-        }
-    }
-
-    private void Update()
-    {
-        if (m_Target != null)
-        {
-            float distance = Vector3.Distance(m_Target.transform.position, transform.position);
-            if (distance < 2.0f)
-            {
-                m_Agent.isStopped = true;
-                BuildingInRange();
-            }
         }
     }
 
@@ -68,12 +58,28 @@ public abstract class Unit : MonoBehaviour,
         }
     }
 
+
     public virtual void GoTo(Vector3 position)
     {
         //we don't have a target anymore if we order to go to a random point.
         m_Target = null;
         m_Agent.SetDestination(position);
         m_Agent.isStopped = false;
+    }
+
+    //set the offset between a unit and the selected target to not overlap eachother
+    //Then start the working of the Unit with running BuildingInRange method
+    public virtual void UnitStartWorking()
+    {
+        if (m_Target != null)
+        {
+            float distance = Vector3.Distance(m_Target.transform.position, transform.position);
+            if (distance < 2.0f)
+            {
+                m_Agent.isStopped = true;
+                BuildingInRange();
+            }
+        }
     }
 
 

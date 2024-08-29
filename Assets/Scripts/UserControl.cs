@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public class UserControl : MonoBehaviour
     public Camera GameCamera;
     public float PanSpeed = 10.0f;
     public GameObject Marker;
+
     
     private Unit m_Selected = null;
 
@@ -61,8 +63,7 @@ public class UserControl : MonoBehaviour
 
     private void Update()
     {
-        Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        GameCamera.transform.position = GameCamera.transform.position + new Vector3(move.y, 0, -move.x) * PanSpeed * Time.deltaTime;
+        KeyboardInput();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -91,5 +92,10 @@ public class UserControl : MonoBehaviour
             Marker.transform.SetParent(m_Selected.transform, false);
             Marker.transform.localPosition = Vector3.zero;
         }    
+    }
+    public void KeyboardInput()
+    {
+        Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        GameCamera.transform.position = GameCamera.transform.position + new Vector3(move.y, 0, -move.x) * PanSpeed * Time.deltaTime;
     }
 }
