@@ -43,18 +43,23 @@ public class MenuUIHandler : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void exit()
+    public void Exit()
     {
 #if UNITY_EDITOR  
 
     EditorApplication.ExitPlaymode();
     MainManager.instance.SaveColor();
 
-#else
-
-    application.quit
 
 #endif
+
+
+
+
+
+
+
+
 
     }
 }
