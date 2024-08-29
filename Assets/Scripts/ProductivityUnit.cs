@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -17,6 +18,7 @@ namespace Assets.Scripts
                 {
                     m_Currentpile = pile;
                     m_Currentpile.ProductionSpeed *=  productionMultiplier;
+                    Debug.Log("production is doubled");
                 }
             }
           

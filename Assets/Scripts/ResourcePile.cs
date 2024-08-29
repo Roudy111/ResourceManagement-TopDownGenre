@@ -21,7 +21,7 @@ public class ResourcePile : Building
                 }
             else
                 {
-                    value = m_ProdcutionSpeed;
+                    m_ProdcutionSpeed = value;
                 }    
 
         }
